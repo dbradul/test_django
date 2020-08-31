@@ -12,7 +12,6 @@ def hello(request):
 def get_random(request):
     try:
         length = parse_length(request, 10)
-        # chars = parse_chars(request, 0)
     except Exception as ex:
         return HttpResponse(str(ex), status_code=400)
 
