@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from students.views import hello, get_random
+from students.views import get_random, hello, students_create, students_list
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', hello),
     path('password/', get_random),
+
+    path('students/', students_list),
+    path('students/create', students_create),
 ]

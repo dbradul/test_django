@@ -1,8 +1,10 @@
-from django.http import HttpResponse
+from django.db.models import Q
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
-# Create your views here.
-from students.utils import parse_length, gen_password
+from students.forms import StudentCreateForm
+from students.models import Student
+from students.utils import format_list, gen_password, parse_length
 
 
 def hello(request):
@@ -18,3 +20,56 @@ def get_random(request):
     result = gen_password(length)
 
     return HttpResponse(result)
+
+
+def students_list(request):
+    students = Student.objects.all()
+
+    first_name = request.GET.get('first_name')
+    last_name = request.GET.get('last_name')
+    rating = request.GET.get('rating')
+
+    if first_name:
+        or_names = first_name.split('|')
+        or_cond = Q()
+        for or_name in or_names:
+            or_cond = or_cond | Q(first_name=or_name)
+        students = students.filter(or_cond)
+
+    if last_name:
+        students = students.filter(last_name=last_name)
+
+    if rating:
+        students = students.filter(rating=rating)
+
+    return render(
+        request=request,
+        template_name='students-list.html',
+        context={
+            'students': format_list(students)
+        }
+
+    )
+
+
+def students_create(request):
+
+    if request.method == 'GET':
+
+        form = StudentCreateForm()
+
+    elif request.method == 'POST':
+
+        form = StudentCreateForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/students/')
+
+    return render(
+        request=request,
+        template_name='students-create.html',
+        context={
+            'form': form
+        }
+    )

@@ -1,5 +1,3 @@
-import datetime
-import json
 import random
 
 
@@ -23,3 +21,10 @@ def parse_length(request, default=10):
         raise ValueError("RANGE ERROR: [3..10]")
 
     return length
+
+
+def format_list(lst):
+    return '<br>'.join(
+        str(rec)
+        for rec in lst
+    )
