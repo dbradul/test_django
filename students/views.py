@@ -1,6 +1,7 @@
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.shortcuts import render
+from django.urls import reverse
 
 from students.forms import StudentCreateForm
 from students.models import Student
@@ -22,7 +23,7 @@ def get_random(request):
     return HttpResponse(result)
 
 
-def students_list(request):
+def get_students(request):
     students = Student.objects.all()
 
     first_name = request.GET.get('first_name')
@@ -46,13 +47,13 @@ def students_list(request):
         request=request,
         template_name='students-list.html',
         context={
-            'students': format_list(students)
+            'students': students
         }
 
     )
 
 
-def students_create(request):
+def create_student(request):
 
     if request.method == 'GET':
 
@@ -64,11 +65,42 @@ def students_create(request):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect('/students/')
+            return HttpResponseRedirect(reverse('students:list'))
 
     return render(
         request=request,
         template_name='students-create.html',
+        context={
+            'form': form
+        }
+    )
+
+
+def edit_student(request, id):
+
+    try:
+        student = Student.objects.get(id=id)
+    except Student.DoesNotExist as ex:
+        return HttpResponse("Student doesn't exist", status=404)
+
+    if request.method == 'GET':
+
+        form = StudentCreateForm(instance=student)
+
+    elif request.method == 'POST':
+
+        form = StudentCreateForm(
+            data=request.POST,
+            instance=student
+        )
+
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('students:list'))
+
+    return render(
+        request=request,
+        template_name='students-edit.html',
         context={
             'form': form
         }
