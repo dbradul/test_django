@@ -1,11 +1,11 @@
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
 from students.forms import StudentCreateForm
 from students.models import Student
-from students.utils import format_list, gen_password, parse_length
+from students.utils import gen_password, parse_length
 
 
 def hello(request):
@@ -76,11 +76,11 @@ def create_student(request):
     )
 
 
-def edit_student(request, id):
+def edit_student(request, pk):
 
     try:
-        student = Student.objects.get(id=id)
-    except Student.DoesNotExist as ex:
+        student = Student.objects.get(id=pk)
+    except Student.DoesNotExist:
         return HttpResponse("Student doesn't exist", status=404)
 
     if request.method == 'GET':
