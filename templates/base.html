@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+{% block title %}
+        <title>LMS</title>
+{% endblock %}
+</head>
+<body>
+
+{#<h1 style="font-family: Roboto">LMS</h1>#}
+
+<div>
+    <a style="font-family: Roboto; font-size: 56px" href="{% url 'core:index' %}">LMS</a>
+</div>
+
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

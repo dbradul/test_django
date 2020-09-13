@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>View students</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
+{#{% block title %}#}
+{#        <title>Students list</title>#}
+{#{% endblock %}#}
+
+{% block content %}
     <form>
       <label >First name:</label>
       <input type="text" name="first_name"><br><br>
@@ -17,20 +16,20 @@
       <input type="number" name="rating"  min="0" max="100"><br><br>
 
       <input type="submit" value="Search">
+      <input formaction="{% url 'students:create' %}" type="submit" value="Create">
     </form>
 
-{#{{students|safe}}#}
+    {#{{students|safe}}#}
 
-{% for student in students %}
-{#    <a href="/students/edit/{{ student.id }}">EDIT</a>#}
-    <a href="{% url 'students:edit' student.id%}">EDIT</a>
-    {{ student.id }}
-    {{ student.first_name }}
-    {{ student.last_name }}
-    {{ student.email }}
-    {{ student.rating }}
-    <br>
-{% endfor %}
+    {% for student in students %}
+    {#    <a href="/students/edit/{{ student.id }}">EDIT</a>#}
+        <a href="{% url 'students:edit' student.uuid%}">EDIT</a>
+        {{ student.id }}
+        {{ student.first_name }}
+        {{ student.last_name }}
+        {{ student.email }}
+        {{ student.rating }}
+        <br>
+    {% endfor %}
 
-</body>
-</html>
+{% endblock %}

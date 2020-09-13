@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Edit student</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
+{% block title %}
+        <title>Edit student</title>
+{% endblock %}
+
+{% block content %}
     <form method="post">
 
         {% csrf_token %}
@@ -13,7 +12,6 @@
         {{form.as_p}}
 
         <input type="submit" value="Save">
+        <input formaction="{% url 'students:delete' student.uuid %}" type="submit" value="Delete">
     </form>
-
-</body>
-</html>
+{% endblock %}

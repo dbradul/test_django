@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from core.views import index
 from students.views import get_random, hello
 
 urlpatterns = [
@@ -23,5 +24,8 @@ urlpatterns = [
     path('hello/', hello),
     path('password/', get_random),
 
+    # path('', index, name='index'),
+
+    path('', include('core.urls')),
     path('students/', include('students.urls')),
 ]

@@ -1,10 +1,10 @@
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
-from students.forms import StudentCreateForm, StudentListForm
+from students.forms import StudentCreateForm
 from students.models import Student
 from students.utils import gen_password, parse_length
 
@@ -26,8 +26,6 @@ def get_random(request):
 
 def get_students(request):
     students = Student.objects.all()
-
-    form = StudentListForm()
 
     or_params = [
         'first_name',
@@ -57,13 +55,12 @@ def get_students(request):
         request=request,
         template_name='students-list.html',
         context={
-            'form': form,
-            'students': students
+            'students': students,
         }
     )
 
 
-@csrf_exempt
+# @csrf_exempt
 def create_student(request):
 
     if request.method == 'GET':
@@ -82,7 +79,7 @@ def create_student(request):
         request=request,
         template_name='students-create.html',
         context={
-            'form': form
+            'form': form,
         }
     )
 
@@ -113,6 +110,21 @@ def edit_student(request, uuid):
         request=request,
         template_name='students-edit.html',
         context={
-            'form': form
+            'form': form,
+            'student': student,
         }
     )
+
+
+def delete_student(request, uuid):
+    '''
+    def delete_student(request, uuid):
+        Student.objects.get(uuid=uuid).delete()
+        return HttpResponseRedirect(reverse("students:list"))
+    '''
+
+    student = get_object_or_404(Student, uuid=uuid)
+
+    student.delete()
+
+    return HttpResponseRedirect(reverse('students:list'))
