@@ -1,9 +1,12 @@
 import datetime
 import random
 
+from django.core.validators import MinLengthValidator, MaxLengthValidator, MaxValueValidator, MinValueValidator
 from django.db import models
 
 from faker import Faker
+
+from uuid import uuid4
 
 
 # Create your models here.
@@ -13,6 +16,7 @@ class Student(models.Model):
     birthdate = models.DateTimeField(null=True, default=datetime.date.today)
     rating = models.SmallIntegerField(null=True, default=0)
     email = models.EmailField(null=True, max_length=128)
+    uuid = models.UUIDField(null=True, max_length=64, default=uuid4().hex)
 
     def full_name(self):
         return f'{self.first_name}, {self.last_name}'

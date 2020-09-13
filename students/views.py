@@ -2,8 +2,9 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
 
-from students.forms import StudentCreateForm
+from students.forms import StudentCreateForm, StudentListForm
 from students.models import Student
 from students.utils import gen_password, parse_length
 
@@ -26,33 +27,43 @@ def get_random(request):
 def get_students(request):
     students = Student.objects.all()
 
-    first_name = request.GET.get('first_name')
-    last_name = request.GET.get('last_name')
-    rating = request.GET.get('rating')
+    form = StudentListForm()
 
-    if first_name:
-        or_names = first_name.split('|')
-        or_cond = Q()
-        for or_name in or_names:
-            or_cond = or_cond | Q(first_name=or_name)
-        students = students.filter(or_cond)
+    or_params = [
+        'first_name',
+        'last_name',
+    ]
 
-    if last_name:
-        students = students.filter(last_name=last_name)
+    and_params = [
+        'age',
+        'date_start_work',
+    ]
 
-    if rating:
-        students = students.filter(rating=rating)
+    for param in and_params:
+        value = request.GET.get(param)
+        if value:
+            students = students.filter(**{param: value})
+
+    for param in or_params:
+        value = request.GET.get(param)
+        if value:
+            values = value.split('|')
+            or_cond = Q()
+            for value in values:
+                or_cond |= Q(**{param: value})
+            students = students.filter(or_cond)
 
     return render(
         request=request,
         template_name='students-list.html',
         context={
+            'form': form,
             'students': students
         }
-
     )
 
 
+@csrf_exempt
 def create_student(request):
 
     if request.method == 'GET':
@@ -76,10 +87,10 @@ def create_student(request):
     )
 
 
-def edit_student(request, pk):
+def edit_student(request, uuid):
 
     try:
-        student = Student.objects.get(id=pk)
+        student = Student.objects.get(uuid=uuid)
     except Student.DoesNotExist:
         return HttpResponse("Student doesn't exist", status=404)
 

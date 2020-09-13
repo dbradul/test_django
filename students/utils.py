@@ -28,3 +28,4 @@ def format_list(lst):
         str(rec)
         for rec in lst
     )
+
