@@ -25,7 +25,7 @@ def get_random(request):
 
 
 def get_students(request):
-    students = Student.objects.all()
+    students = Student.objects.select_related('group').all()
 
     or_params = [
         'first_name',
@@ -50,6 +50,23 @@ def get_students(request):
             for value in values:
                 or_cond |= Q(**{param: value})
             students = students.filter(or_cond)
+
+    # return render(
+    #     request=request,
+    #     template_name='students-list.html',
+    #     context={
+    #         'students': students,
+    #     }
+
+    content = open('students-list.html').read()
+    from django.template import Context, Template
+    templated_content = Template(content)
+    rendered_string = templated_content.render(Context(
+        {
+            'students': 'students',
+        }
+    ))
+    result = HttpResponse(rendered_string)
 
     return render(
         request=request,

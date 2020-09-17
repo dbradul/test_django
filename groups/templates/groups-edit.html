@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="btn_save">Save</button>
+    </form>
+
+{#    {% for student in group.students.all %}#}
+{#        <a href="/students/edit/{{ student.id }}">EDIT</a>#}
+{#        <a href="{% url 'students:edit' student.uuid%}">EDIT</a>#}
+{#        {{ student.id }}#}
+{#        {{ student.first_name }}#}
+{#        {{ student.last_name }}#}
+{#        {{ student.email }}#}
+{#        {{ student.rating }}#}
+{#        {{ student.group.name }}#}
+{#        {{ student.group.course }}#}
+{#        <br>#}
+{#    {% endfor %}#}
+
+    {% include 'includes/students-table.html' %}
+
+{% endblock %}
+
