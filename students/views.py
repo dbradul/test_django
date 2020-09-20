@@ -51,23 +51,6 @@ def get_students(request):
                 or_cond |= Q(**{param: value})
             students = students.filter(or_cond)
 
-    # return render(
-    #     request=request,
-    #     template_name='students-list.html',
-    #     context={
-    #         'students': students,
-    #     }
-
-    content = open('students-list.html').read()
-    from django.template import Context, Template
-    templated_content = Template(content)
-    rendered_string = templated_content.render(Context(
-        {
-            'students': 'students',
-        }
-    ))
-    result = HttpResponse(rendered_string)
-
     return render(
         request=request,
         template_name='students-list.html',

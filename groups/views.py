@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.urls import reverse
 
-from groups.forms import GroupEditForm
+from groups.forms import GroupCreateForm
 from groups.models import Group
 
 
@@ -30,14 +30,14 @@ def group_edit(request, id):
     group = get_object_or_404(Group, id=id)
 
     if request.method == 'POST':
-        form = GroupEditForm(request.POST, instance=group)
+        form = GroupCreateForm(request.POST, instance=group)
 
         if form.is_valid():
             group = form.save()
             print(f'Group has been saved: {group}')
             return HttpResponseRedirect(reverse('groups:list'))
     else:
-        form = GroupEditForm(
+        form = GroupCreateForm(
             instance=group
         )
 

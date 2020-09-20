@@ -1,7 +1,6 @@
 import datetime
 import random
 
-from django.core.validators import MinLengthValidator, MaxLengthValidator, MaxValueValidator, MinValueValidator
 from django.db import models
 
 from faker import Faker
@@ -25,7 +24,6 @@ class Student(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         related_name='students',
-        # editable=False
     )
 
     def full_name(self):
