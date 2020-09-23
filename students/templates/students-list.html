@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
 
-{#{% block title %}#}
-{#        <title>Students list</title>#}
-{#{% endblock %}#}
+{% block header %}
+        <h1>Students list</h1>
+{% endblock %}
+
 
 {% block content %}
     <form>
-      <label >First name:</label>
-      <input type="text" name="first_name"><br><br>
+{#      <label >First name:</label>#}
+{#      <input type="text" name="first_name"><br><br>#}
+
+
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">First name:</span>
+          </div>
+          <input name="first_name" type="text" class="form-control" placeholder="Enter first name" aria-label="Username" aria-describedby="basic-addon1">
+        </div>
+
 
       <label>Last name:</label>
       <input type="text" name="last_name"><br><br>
@@ -15,8 +25,11 @@
       <label>Rating:</label>
       <input type="number" name="rating"  min="0" max="100"><br><br>
 
-      <input type="submit" value="Search">
-      <input formaction="{% url 'students:create' %}" type="submit" value="Create">
+
+      <div class="mb-3">
+          <input type="submit" value="Search">
+          <input formaction="{% url 'students:create' %}" type="submit" value="Create">
+      </div>
     </form>
 
 {#    {{students|safe}}#}

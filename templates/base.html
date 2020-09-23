@@ -50,6 +50,23 @@
 </nav>
 
   <div class="container">
+{#            {% block header %}#}
+{#                <h1>#}
+{#                Welcome to LMS!#}
+{#                </h1>#}
+{#            {% endblock%}#}
+{##}
+
+            <div class="border rounded text-center p-3 m-3 mb-5 bg-light shadow">
+                {% block header %}
+                    <h1>
+                        Welcome to LMS!!!
+                    </h1>
+                {% endblock %}
+            </div>
+
+
+
             {% block content %}
             {% endblock %}
   </div>
