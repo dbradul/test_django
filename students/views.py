@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 
-from students.forms import StudentCreateForm
+from students.forms import StudentCreateForm, StudentEditForm
 from students.models import Student
 from students.utils import gen_password, parse_length
 
@@ -93,11 +93,11 @@ def edit_student(request, uuid):
 
     if request.method == 'GET':
 
-        form = StudentCreateForm(instance=student)
+        form = StudentEditForm(instance=student)
 
     elif request.method == 'POST':
 
-        form = StudentCreateForm(
+        form = StudentEditForm(
             data=request.POST,
             instance=student
         )
