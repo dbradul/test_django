@@ -1,9 +1,10 @@
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
-from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView, CreateView, ListView
 
+from core.views import EditView
 from students.forms import StudentCreateForm, StudentEditForm
 from students.models import Student
 from students.utils import gen_password, parse_length
@@ -122,9 +123,58 @@ def delete_student(request, uuid):
         Student.objects.get(uuid=uuid).delete()
         return HttpResponseRedirect(reverse("students:list"))
     '''
-
     student = get_object_or_404(Student, uuid=uuid)
-
     student.delete()
 
     return HttpResponseRedirect(reverse('students:list'))
+
+
+class StudentEditView(EditView):
+
+    model = Student
+    form = StudentEditForm
+    template_name = 'students-edit.html'
+    redirect_url = 'students:list'
+    object_name = 'student'
+    pk_arg = 'uuid'
+
+    def get_object(self, id):
+        return self.model.objects.get(uuid=id)
+
+
+class StudentUpdateView(UpdateView):
+
+    model = Student
+    form_class = StudentEditForm
+    template_name = 'students-edit.html'
+    success_url = reverse_lazy('students:list')
+    context_object_name = 'student'
+    pk_url_kwarg = 'uuid'
+
+    def get_object(self):
+        uuid = self.kwargs.get('uuid')
+        return self.get_queryset().get(uuid=uuid)
+
+
+class StudentCreateView(CreateView):
+
+    model = Student
+    form_class = StudentCreateForm
+    template_name = 'students-create.html'
+    success_url = reverse_lazy('students:list')
+
+
+class StudentListView(ListView):
+
+    model = Student
+    # form_class = StudentCreateForm
+    template_name = 'students-list.html'
+    context_object_name = 'students'
+    # success_url = reverse_lazy('students:list')
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        request = self.request
+        # ....
+
+        return qs

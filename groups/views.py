@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from django.urls import reverse
 
+from core.views import EditView
 from groups.forms import GroupCreateForm
 from groups.models import Group
 
@@ -46,7 +47,22 @@ def group_edit(request, id):
         template_name='groups-edit.html',
         context={
             'form': form,
-            # 'group': group
+            'group': group,
             'students': group.students.all()
         }
     )
+
+
+class GroupEditView(EditView):
+
+    model = Group
+    form = GroupCreateForm
+    template_name = 'groups-edit.html'
+    redirect_url = 'groups:list'
+    object_name = 'group'
+
+    def get_context(self, **kwargs):
+        context = super().get_context(**kwargs)
+        group = context[self.object_name]
+        context['students'] = group.students.all()
+        return context
