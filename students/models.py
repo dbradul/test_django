@@ -94,6 +94,7 @@ class Student(Person):
 
     def save(self, *args, **kwargs):
         # PRE SAVE
+        self.clean()
         super().save(*args, **kwargs)
         # POST SAVE
 

@@ -2,7 +2,8 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import UpdateView
 
 from core.views import EditView
 from groups.forms import GroupCreateForm
@@ -65,4 +66,19 @@ class GroupEditView(EditView):
         context = super().get_context(**kwargs)
         group = context[self.object_name]
         context['students'] = group.students.all()
+        return context
+
+
+class GroupUpdateView(UpdateView):
+
+    model = Group
+    form_class = GroupCreateForm
+    template_name = 'groups-edit.html'
+    success_url = reverse_lazy('groups:list')
+    context_object_name = 'group'
+    pk_url_kwarg = 'id'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['students'] = self.get_object().students.all()
         return context
