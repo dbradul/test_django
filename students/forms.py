@@ -9,20 +9,23 @@ class StudentBaseForm(forms.ModelForm):
         model = Student
         fields = ['first_name', 'last_name', 'rating', 'email', 'group']
 
-    def clean_email(self):
-        email = self.cleaned_data['email']
+    def clean(self):
+        pass
 
-        blacklist_domains = [
-            'mail.ru',
-            'yandex.ru'
-        ]
-
-        domain = email.split('@')[1]
-
-        if domain in blacklist_domains:
-            raise ValidationError('Prohibited domain')
-
-        return email
+    # def clean_email(self):
+    #     email = self.cleaned_data['email']
+    #
+    #     blacklist_domains = [
+    #         'mail.ru',
+    #         'yandex.ru'
+    #     ]
+    #
+    #     domain = email.split('@')[1]
+    #
+    #     if domain in blacklist_domains:
+    #         raise ValidationError('Prohibited domain')
+    #
+    #     return email
 
 
 class StudentCreateForm(StudentBaseForm):
