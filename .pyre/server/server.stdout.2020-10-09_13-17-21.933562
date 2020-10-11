@@ -1,0 +1,7 @@
+2020-10-09 13:17:21 INFO Running as pid: 45239
+2020-10-09 13:17:21 INFO Version: f319efebe90e67e4220339e10efa6ee3155537ad
+2020-10-09 13:17:21 INFO Build info: Linux x86_64 @ Thu Sep 24 17:22:29 PDT 2020
+2020-10-09 13:17:22 PERFORMANCE Module tracker built: 0.469332s
+2020-10-09 13:17:22 INFO Building type environment...
+2020-10-09 13:17:22 INFO Parsing 12279 stubs and sources...
+2020-10-09 13:17:54 PERFORMANCE Sources parsed: 31.648614s

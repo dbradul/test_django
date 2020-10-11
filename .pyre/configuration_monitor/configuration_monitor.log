@@ -1,0 +1,13 @@
+2020-10-09 13:14:49,066 DEBUG Watchman roots: ['/home/dbhost/Work/test_django2']
+2020-10-09 13:14:49,066 DEBUG Configuration monitor subscription: Subscription(root='/home/dbhost/Work/test_django2', name='pyre_monitor_test_django2', subscription={'empty_on_fresh_instance': True, 'expression': ['allof', ['type', 'f'], ['anyof', ['suffix', 'pyre_configuration.local'], ['suffix', 'pyre_configuration']]], 'fields': ['name']})
+2020-10-09 13:16:20,372 INFO Cleaning up lock and pid files before exiting.
+[0G[K[33m ƛ[0m [?7hInterrupted by user
+[?7h[?25h2020-10-09 13:16:57,094 DEBUG Watchman roots: ['/home/dbhost/Work/test_django2']
+2020-10-09 13:16:57,094 DEBUG Configuration monitor subscription: Subscription(root='/home/dbhost/Work/test_django2', name='pyre_monitor_test_django2', subscription={'empty_on_fresh_instance': True, 'expression': ['allof', ['type', 'f'], ['anyof', ['suffix', 'pyre_configuration.local'], ['suffix', 'pyre_configuration']]], 'fields': ['name']})
+2020-10-09 13:17:02,487 INFO Cleaning up lock and pid files before exiting.
+[0G[K[33m ƛ[0m [?7hInterrupted by user
+[?7h[?25h2020-10-09 13:17:21,919 DEBUG Watchman roots: ['/home/dbhost/Work/test_django2']
+2020-10-09 13:17:21,919 DEBUG Configuration monitor subscription: Subscription(root='/home/dbhost/Work/test_django2', name='pyre_monitor_test_django2', subscription={'empty_on_fresh_instance': True, 'expression': ['allof', ['type', 'f'], ['anyof', ['suffix', 'pyre_configuration.local'], ['suffix', 'pyre_configuration']]], 'fields': ['name']})
+2020-10-09 13:17:26,548 INFO Cleaning up lock and pid files before exiting.
+[0G[K[33m ƛ[0m [?7hInterrupted by user
+[?7h[?25h

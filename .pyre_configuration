@@ -1,0 +1,8 @@
+{
+  "binary": "/home/dbhost/Work/test_django2/env/bin/pyre.bin",
+  "source_directories": [
+    "."
+  ],
+  "taint_models_path": "/home/dbhost/Work/test_django2/env/lib",
+  "typeshed": "/home/dbhost/Work/test_django2/env/lib/pyre_check/typeshed"
+}

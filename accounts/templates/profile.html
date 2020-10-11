@@ -6,10 +6,29 @@
 {% endblock %}
 
 {% block content %}
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="media">
+            <div class="img-circle.vert">
+                <img class="rounded-circle p-1 m-1" width="200" height="200"  src="{{ user.profile.image.url }}">
+            </div>
+    {#        <img class="rounded-circle p-1 m-1" width="300" height="{{ user.profile.image.height }}"  src="{{ user.profile.image.url }}">#}
+    {#        <img class="img-circle p-1 m-1"  src="{{ user.profile.image.url }}">#}
+            <div class="media-body  p-3 m-3">
+                <h2 class="account-heading">{{ user.username }}</h2>
+                <h3 class="account-heading">{{ user.first_name }} {{ user.last_name }}</h3>
+                <p class="text-secondary">{{ user.email }}</p>
+            </div>
+        </div>
+
 
         {% csrf_token %}
-        {{form|crispy}}
+
+        {{user_form|crispy}}
+        <div class = 'mb-3'>
+            Raw passwords are not stored, you can change the password <a href="{% url 'accounts:password' %}">this form</a>
+        </div>
+        {{profile_form|crispy}}
 
         <input class="btn btn-success" type="submit" value="Save">
         <a class="btn btn-light" href="{% url 'core:index' %}">Cancel</a>

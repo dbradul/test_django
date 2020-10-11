@@ -1,0 +1,34 @@
+2020-10-09 13:14:49 INFO Running as pid: 44849
+2020-10-09 13:14:49 INFO Version: f319efebe90e67e4220339e10efa6ee3155537ad
+2020-10-09 13:14:49 INFO Build info: Linux x86_64 @ Thu Sep 24 17:22:29 PDT 2020
+2020-10-09 13:14:50 PERFORMANCE Module tracker built: 1.409001s
+2020-10-09 13:14:50 INFO Building type environment...
+2020-10-09 13:14:50 INFO Parsing 12278 stubs and sources...
+2020-10-09 13:16:17 PERFORMANCE Sources parsed: 86.295238s
+2020-10-09 13:16:43 ENVIRONMENT Updating is from empty stub result Environment
+2020-10-09 13:16:43 ENVIRONMENT Updating Alias Environment
+2020-10-09 13:16:43 ENVIRONMENT Updating Edges Environment
+2020-10-09 13:16:43 ENVIRONMENT Updating Class metadata Environment
+2020-10-09 13:16:43 ENVIRONMENT Updating parse annotation Environment
+2020-10-09 13:16:43 ENVIRONMENT Updating metaclasses Environment
+2020-10-09 13:16:43 ENVIRONMENT Updating attributes Environment
+2020-10-09 13:16:43 ENVIRONMENT Updating Global Environment
+2020-10-09 13:16:43 ENVIRONMENT Updating Global Locations Environment
+2020-10-09 13:16:43 PERFORMANCE Full environment built: 112.085682s
+2020-10-09 13:16:44 INFO Checking 202616 functions...
+2020-10-09 13:16:44 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:45 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:45 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:45 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:45 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:45 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:45 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:46 PROGRESS Processed 500 of 202616 functions
+2020-10-09 13:16:46 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:47 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:47 PROGRESS Processed 1000 of 202616 functions
+2020-10-09 13:16:48 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:48 PROGRESS Processed 1500 of 202616 functions
+2020-10-09 13:16:49 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:49 ENVIRONMENT Superclass of top (unresolved name: typing.Generic[])
+2020-10-09 13:16:50 PROGRESS Processed 2000 of 202616 functions

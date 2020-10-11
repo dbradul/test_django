@@ -1,0 +1,10 @@
+Execution time for GET - /students/: 200
+Execution time for GET - /: 200
+Execution time for GET - /students/: 200
+Execution time for GET - /students/edit/8b41dffe-d829-482a-b1d2-15012e9f56cf: 200
+Execution time for POST - /students/edit/8b41dffe-d829-482a-b1d2-15012e9f56cf: 302
+Execution time for GET - /students/: 200
+Execution time for GET - /accounts/profile/: 200
+Execution time for GET - /: 200
+Execution time for GET - /students/: 200
+Execution time for GET - /__debug__/render_panel/: 200

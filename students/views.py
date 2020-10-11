@@ -3,9 +3,10 @@ from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
-from django.views.generic import UpdateView, CreateView, ListView
+from django.views.generic import UpdateView, CreateView, ListView, DeleteView
 
 from core.views import EditView
+from students.filters import StudentFilter
 from students.forms import StudentCreateForm, StudentEditForm
 from students.models import Student
 from students.utils import gen_password, parse_length
@@ -149,7 +150,7 @@ class StudentUpdateView(LoginRequiredMixin, UpdateView):
     form_class = StudentEditForm
     template_name = 'students-edit.html'
     success_url = reverse_lazy('students:list')
-    context_object_name = 'student'
+    # context_object_name = 'student'
     pk_url_kwarg = 'uuid'
 
     def get_object(self):
@@ -171,11 +172,18 @@ class StudentListView(ListView):
     # form_class = StudentCreateForm
     template_name = 'students-list.html'
     context_object_name = 'students'
+    paginate_by = 10
     # success_url = reverse_lazy('students:list')
 
     def get_queryset(self):
         qs = super().get_queryset()
-        request = self.request
+        qs = qs.select_related('group')
         # ....
 
         return qs
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     filter = StudentFilter(self.request.GET, queryset=self.get_queryset())
+    #     context['filter'] = filter
+    #     return context
