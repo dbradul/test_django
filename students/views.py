@@ -178,7 +178,30 @@ class StudentListView(ListView):
     def get_queryset(self):
         qs = super().get_queryset()
         qs = qs.select_related('group')
-        # ....
+
+        or_params = [
+            'first_name',
+            'last_name',
+        ]
+
+        and_params = [
+            'age',
+            'date_start_work',
+        ]
+
+        for param in and_params:
+            value = self.request.GET.get(param)
+            if value:
+                qs = qs.filter(**{param: value})
+
+        for param in or_params:
+            value = self.request.GET.get(param)
+            if value:
+                values = value.split('|')
+                or_cond = Q()
+                for value in values:
+                    or_cond |= Q(**{param: value})
+                qs = qs.filter(or_cond)
 
         return qs
 

@@ -1,10 +1,68 @@
-Execution time for GET - /students/: 200
-Execution time for GET - /: 200
-Execution time for GET - /students/: 200
-Execution time for GET - /students/edit/8b41dffe-d829-482a-b1d2-15012e9f56cf: 200
-Execution time for POST - /students/edit/8b41dffe-d829-482a-b1d2-15012e9f56cf: 302
-Execution time for GET - /students/: 200
-Execution time for GET - /accounts/profile/: 200
-Execution time for GET - /: 200
-Execution time for GET - /students/: 200
-Execution time for GET - /__debug__/render_panel/: 200
+
+Execution time for POST - /accounts/login/, 302: 0.4911360740661621s
+Execution time for GET - /, 200: 0.052207231521606445s
+Execution time for GET - /students/, 200: 0.08915066719055176s
+Execution time for GET - /groups/, 200: 0.0592496395111084s
+Execution time for GET - /, 200: 0.0378110408782959s
+Execution time for GET - /students/, 200: 0.10587143898010254s
+Execution time for GET - /students/, 200: 0.07883954048156738s
+Execution time for GET - /students/edit/8b41dffe-d829-482a-b1d2-15012e9f56cf, 200: 0.08641934394836426s
+Execution time for POST - /students/edit/8b41dffe-d829-482a-b1d2-15012e9f56cf, 302: 0.15357089042663574s
+Execution time for GET - /students/, 200: 0.07571125030517578s
+Execution time for GET - /students/edit/8b41dffe-d829-482a-b1d2-15012e9f56cf, 200: 0.2886629104614258s
+Execution time for POST - /students/edit/8b41dffe-d829-482a-b1d2-15012e9f56cf, 302: 0.1355726718902588s
+Execution time for GET - /students/, 200: 0.08498311042785645s
+Execution time for GET - /groups/, 200: 0.053603172302246094s
+Execution time for GET - /students/, 200: 0.07612848281860352s
+Execution time for GET - /groups/, 200: 0.056685686111450195s
+Execution time for GET - /students/, 200: 2.292757034301758s
+Execution time for GET - /students/, 200: 2.0795137882232666s
+Execution time for GET - /groups/, 200: 2.058262348175049s
+Execution time for GET - /groups/edit/5, 200: 2.236692190170288s
+Execution time for GET - /accounts/profile/, 200: 2.1188724040985107s
+Execution time for GET - /media/default.jpg, 304: 2.005122184753418s
+Execution time for GET - /students/, 200: 0.3402574062347412s
+Execution time for GET - /students/, 200: 0.07640838623046875s
+Execution time for GET - /students/, 200: 0.07807159423828125s
+Execution time for GET - /students/, 200: 0.07976341247558594s
+Execution time for GET - /students/, 200: 0.08235716819763184s
+Execution time for GET - /students/, 200: 0.27309489250183105s
+Execution time for GET - /students/, 200: 0.07567763328552246s
+Execution time for GET - /students/, 200: 0.08094668388366699s
+Execution time for GET - /students/, 200: 0.0763101577758789s
+Execution time for GET - /students/, 200: 0.07977128028869629s
+Execution time for GET - /students/, 200: 0.0846414566040039s
+Execution time for GET - /students/, 200: 0.08141326904296875s
+Execution time for GET - /students/, 200: 0.08756303787231445s
+Execution time for GET - /students/, 200: 0.08389592170715332s
+Execution time for GET - /students/, 200: 0.0782313346862793s
+Execution time for GET - /students/, 200: 0.0814051628112793s
+Execution time for GET - /students/, 200: 0.2739896774291992s
+Execution time for GET - /students/, 200: 13.881606340408325s
+Execution time for GET - /students/, 200: 0.0885915756225586s
+Execution time for GET - /students/, 200: 7.9498610496521s
+Execution time for GET - /students/, 200: 36.74054217338562s
+Execution time for GET - /students/, 200: 10.118808269500732s
+Execution time for GET - /students/, 200: 13.635064601898193s
+Execution time for GET - /students/, 200: 2.5487661361694336s
+Execution time for GET - /students/, 500: 0.4146108627319336s
+Execution time for GET - /students/, 200: 0.34641504287719727s
+Execution time for GET - /students/, 200: 0.08825063705444336s
+Execution time for GET - /__debug__/render_panel/, 200: 0.002358675003051758s
+Execution time for GET - /students/, 200: 0.2757072448730469s
+Execution time for GET - /__debug__/render_panel/, 200: 0.013083934783935547s
+Execution time for GET - /students/, 200: 0.27886486053466797s
+Execution time for GET - /students/, 200: 0.08133101463317871s
+Execution time for GET - /students/, 200: 0.07863664627075195s
+Execution time for GET - /students/, 200: 0.07889604568481445s
+Execution time for GET - /students/, 200: 0.08536124229431152s
+Execution time for GET - /students/, 200: 0.1538708209991455s
+Execution time for GET - /students/, 200: 0.2690112590789795s
+Execution time for GET - /students/, 200: 0.0841975212097168s
+Execution time for GET - /students/, 500: 0.14405417442321777s
+Execution time for GET - /students/, 500: 0.29548144340515137s
+Execution time for GET - /students/, 200: 0.3000373840332031s
+Execution time for GET - /students/, 200: 0.0800163745880127s
+Execution time for GET - /students/, 200: 0.07482218742370605s
+Execution time for GET - /students/, 200: 0.07795953750610352s
+Execution time for GET - /students/, 200: 0.07648468017578125s

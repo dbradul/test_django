@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_filters',
 
+    'core',
     'students',
     'groups',
     'accounts',
@@ -58,7 +59,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'core.middlewares.simple_middleware'
+
+    'core.middlewares.perf_tracker_middleware',
+    'core.middlewares.QueryParamsInjectorMiddleware',
 ]
 
 ROOT_URLCONF = 'lms.urls'

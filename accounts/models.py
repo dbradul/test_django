@@ -25,23 +25,3 @@ class Profile(models.Model):
     image = models.ImageField(null=True, default='default.jpg', upload_to='pics/')
     interests = models.CharField(max_length=128, null=True)
 
-    # def save(self, **kwargs):
-    #     print('')
-
-
-
-    def save(self, *args, **kwargs):
-        result = super().save(*args, **kwargs)
-
-        img = Image.open(self.user.profile.image.file.name)
-        width = img.width
-        height = img.height
-        new_width = 300
-
-        if width > new_width:
-            percent = (new_width/width)
-            new_height = int(height*percent)
-            new_img = img.resize((new_width, new_height), Image.ANTIALIAS)
-            new_img.save(self.user.profile.image.file.name, 'JPEG')
-
-        return result

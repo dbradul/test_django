@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
@@ -12,7 +11,8 @@ from django.views.generic import CreateView, UpdateView
 from django.views.generic.edit import ProcessFormView
 
 from accounts.forms import AccountCreateForm, AccountUpdateForm, AccountProfileUpdateForm
-from accounts.models import Profile
+from accounts.models import UserActions
+from accounts.signals import user_action
 
 
 class AccountCreateView(CreateView):
@@ -23,6 +23,11 @@ class AccountCreateView(CreateView):
 
     def form_valid(self, form):
         result = super().form_valid(form)
+        user_action.send(self, dict(
+            user=self.request.user,
+            action=UserActions.USER_ACTION.LOGIN,
+            info='Some info'
+        ))
         # new_rec = UserActions.objects.create(
         #     user=self.request.user,
         #     action=UserActions.USER_ACTION.LOGIN,
@@ -44,13 +49,6 @@ class AccountLoginView(LoginView):
     def form_valid(self, form):
         result  = super().form_valid(form)
 
-        try:
-            profile = self.request.user.profile
-        # except RelatedObjectDoesNotExist as ex:
-        except Exception as ex:
-            profile = Profile.objects.create(user=self.request.user)
-            profile.save()
-
         messages.info(self.request, f'User {self.request.user} has been successfully logged in!')
         return result
 
@@ -59,8 +57,6 @@ class AccountLogoutView(LogoutView):
     template_name = 'logout.html'
 
     def get(self, request, *args, **kwargs):
-        # RemovedInDjango40Warning: when the deprecation ends, replace with:
-        #   context = self.get_context_data()
         result = super().get(request, *args, **kwargs)
 
         messages.info(self.request, f'User {self.request.user} has been logged out!')
