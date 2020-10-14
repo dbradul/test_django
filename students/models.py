@@ -12,6 +12,8 @@ import uuid
 
 # Create your models here.
 from groups.models import Group
+from students.validators import DomainValidator
+
 
 class BaseModel(models.Model):
     class Meta:
@@ -32,7 +34,7 @@ class Person(BaseModel):
     first_name = models.CharField(max_length=64, null=False)
     last_name = models.CharField(max_length=84, null=False)
     birthdate = models.DateTimeField(null=True, default=datetime.date.today)
-    email = models.EmailField(null=True, max_length=128)
+    email = models.EmailField(null=True, max_length=128, validators=[DomainValidator()])
     uuid = models.UUIDField(null=True, max_length=64, default=uuid.uuid4)
 
     def full_name(self):
@@ -76,28 +78,6 @@ class Student(Person):
                 rating=random.randint(0, 100)
             )
             st.save()
-
-
-    def clean(self):
-        email = self.email
-
-        blacklist_domains = [
-            'mail.ru',
-            'yandex.ru'
-        ]
-
-        domain = email.split('@')[1]
-
-        if domain in blacklist_domains:
-            raise ValidationError('Prohibited domain')
-
-
-    def save(self, *args, **kwargs):
-        # PRE SAVE
-        self.clean()
-        super().save(*args, **kwargs)
-        # POST SAVE
-
 
 
 class Teacher(Person):
